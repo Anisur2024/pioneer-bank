@@ -4,9 +4,100 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pioneer Bank</title>
+    <!-- own create css link -->
+    <link rel="stylesheet" href="style.css">
+    <!-- bootstrap cdn link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    
+    <div id="submitArea">
+            <h1 class="text-center mb-5">Welcome To Pioneer Bank</h1>
+        <div class="login-area">
+            <h3>Login</h3>
+            <input class="form-control" placeholder="Email" type="email"> <br>
+            <input class="form-control" placeholder="Password" type="password"> <br>
+            <button id="loginBtn" class="btn btn-success">Enter</button>
+       </div>
+    </div>
+    <div id="transaction-area">
+       <div class="row">
+        <div class="col-md-4">
+            <div class="amount-area deposit">
+                <h4>Deposit</h4>
+                <h3>$<span id="depositOutputDisplay">00</span></h3>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="amount-area withdraw">
+                <h4>Withdraw</h4>
+                <h3>$<span id="withdrawOutputDisplay">00</span></h3>
+            </div>  
+        </div>
+        <div class="col-md-4">
+            <div class="amount-area balance">
+                <h4>Balance</h4>
+            <h3>$<span id="balanceOutputDisplay">1240</span></h3>
+            </div>
+        </div>
+       </div>
+       <div class="row mt-5">
+        <div class="col-md-6">
+         <div class="login-area">
+            <h3>Deposit</h3>        
+            <input id="depositInput" type="text" class="form-control" placeholder="$ amount you want to deposit"> <br>
+            <button id="depositBtn" class="btn btn-success">Deposit</button>
+         </div>
+        </div>   
+        <div class="col-md-6">
+          <div class="login-area">
+            <h3>Withdraw</h3>
+            <input id="withdrawInput" type="text" class="form-control" placeholder="$ amount you want to withdraw"> <br>
+            <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
+          </div>
+       </div>
+    </div>
+    <script>
+        //submitArea click handler
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.addEventListener('click',function(){
+            document.getElementById('submitArea').style.display = "none";
+            document.getElementById('transaction-area').style.display= "block"
+        })
+        //deposite click handler
+        const depositBtn = document.getElementById('depositBtn');
+        depositBtn.addEventListener('click',function(){
+           const depositInput = document.getElementById('depositInput').value;
+            const depositInputs = parseFloat(depositInput);
+                const depositOutputDisplay = document.getElementById('depositOutputDisplay').innerText;
+                const depositOutputDisplays = parseFloat(depositOutputDisplay);
+
+            const result = depositInputs + depositOutputDisplays;
+            document.getElementById('depositOutputDisplay').innerText = result;
+            document.getElementById('depositInput').value = "";
+
+        //main balances + depositeinputs 
+            const balanceOutputDisplay = document.getElementById('balanceOutputDisplay').innerText;
+            const balanceOutputDisplays = parseFloat(balanceOutputDisplay);
+            const totalBalance = depositInputs + balanceOutputDisplays;
+
+            document.getElementById('balanceOutputDisplay').innerText = totalBalance;
+        })
+        //withdraw click handler
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        withdrawBtn.addEventListener('click',function(){
+            const withdrawInput = document.getElementById('withdrawInput').value;    //withdraw add
+            const withdrawInputs = parseFloat(withdrawInput);   
+                const withdrawOutputDisplay = document.getElementById('withdrawOutputDisplay').innerText;
+                const withdrawOutputDisplays = parseFloat(withdrawOutputDisplay);
+
+                let result = withdrawInputs + withdrawOutputDisplays;
+                document.getElementById('withdrawOutputDisplay').innerText = result;
+
+                //
+                 result = balanceOutputDisplays * withdrawInputs;
+                 document.getElementById('balanceOutputDisplay').innerText = result;
+        })
+    </script>
 </body>
 </html>
