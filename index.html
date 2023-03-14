@@ -90,13 +90,15 @@
             const withdrawInputs = parseFloat(withdrawInput);   
                 const withdrawOutputDisplay = document.getElementById('withdrawOutputDisplay').innerText;
                 const withdrawOutputDisplays = parseFloat(withdrawOutputDisplay);
+                    let result = withdrawInputs + withdrawOutputDisplays;
+                    document.getElementById('withdrawOutputDisplay').innerText = result;
+               
+                    const balanceOutputDisplay = document.getElementById('balanceOutputDisplay').innerText;
+                    const balanceOutputDisplays = parseFloat(balanceOutputDisplay);
 
-                let result = withdrawInputs + withdrawOutputDisplays;
-                document.getElementById('withdrawOutputDisplay').innerText = result;
-
-                //
-                 result = balanceOutputDisplays * withdrawInputs;
-                 document.getElementById('balanceOutputDisplay').innerText = result;
+                    result = balanceOutputDisplays - withdrawInputs;
+                    document.getElementById('balanceOutputDisplay').innerText = result;
+                    document.getElementById('withdrawInput').value = "";
         })
     </script>
 </body>
